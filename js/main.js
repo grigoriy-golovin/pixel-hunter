@@ -21,14 +21,20 @@ const MAX_SCREEN = 6;
 switchScreens(currentScreen);
 
 const switchNext = () => {
-  currentScreen === MAX_SCREEN ? (currentScreen = 0) : currentScreen++;
-    switchScreens(currentScreen);
-}
+  if (currentScreen === MAX_SCREEN) {
+    currentScreen = 0;
+  }
+  currentScreen++;
+  switchScreens(currentScreen);
+};
 
 const switchPrev = () => {
-  currentScreen === 0 ? (currentScreen = MAX_SCREEN) : currentScreen--;
-    switchScreens(currentScreen);
-}
+  if (currentScreen === 0) {
+    currentScreen = MAX_SCREEN;
+  }
+  currentScreen--;
+  switchScreens(currentScreen);
+};
 
 const keyupHandler = (evt) => {
   if (evt.keyCode === 39) {
@@ -41,11 +47,11 @@ const keyupHandler = (evt) => {
 
 document.addEventListener(`keyup`, keyupHandler);
 
-const arrows = document.querySelector("#arrows").content;
+const arrows = document.querySelector(`#arrows`).content;
 document.body.append(arrows);
 
-const butPrev = document.querySelector(".arrows__btn--prev");
-const butNext = document.querySelector(".arrows__btn--next");
+const butPrev = document.querySelector(`.arrows__btn--prev`);
+const butNext = document.querySelector(`.arrows__btn--next`);
 
 butPrev.addEventListener(`click`, switchPrev);
 butNext.addEventListener(`click`, switchNext);
