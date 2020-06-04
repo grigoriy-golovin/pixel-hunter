@@ -1,6 +1,9 @@
 import getElement from "./../create-element.js";
 import stat from "./current-stats.js";
 import gameRun from "./../game-run.js";
+import game3 from "./game-3.js";
+import switchGameScreens from "./../switch-game-screens.js";
+import {dataGame} from "./../data/game-data.js";
 
 export default (data) => {
   console.log(data);
@@ -32,6 +35,7 @@ export default (data) => {
         question1: form.elements.question1.value,
       };
       gameRun(response);
+      switchGameScreens(game3(dataGame[2]));
     }
   };
 

@@ -1,6 +1,10 @@
 import getElement from "./../create-element.js";
 import stat from './current-stats.js';
 import gameRun from './../game-run.js';
+import switchGameScreens from "./../switch-game-screens.js";
+import game1 from "./game-1.js";
+import {dataGame} from "./../data/game-data.js";
+
 
 export default (data) => {
 
@@ -28,6 +32,8 @@ const form = game3.querySelector(`.game__content`);
 form.onclick = (evt) => {
    const response = evt.path[0].alt;
       gameRun(response);
+      switchGameScreens(game1(dataGame[0]))
+
     };
 
 
