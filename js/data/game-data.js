@@ -13,21 +13,21 @@ export const INIT_STATE = {
 
 export let currentState = Object.assign({}, INIT_STATE);
 
-export const ResetState = () => currentState = Object.assign({}, INIT_STATE);
-
-export const userResponses = [
+export let userResponses = [
   {isCorrect: true, timeSec: 15},
   {isCorrect: false, timeSec: 15},
   {isCorrect: true, timeSec: 8},
   {isCorrect: true, timeSec: 23},
   {isCorrect: true, timeSec: 8},
   {isCorrect: true, timeSec: 23},
-
 ];
 
+export const ResetState = () => {
+  currentState = Object.assign({}, INIT_STATE);
+  userResponses = [];
+}
 
-
-const stat = userResponses.map((item) => {
+export const stat = userResponses.map((item) => {
 if (!item.isCorrect) {
   return 'wrong';
 };

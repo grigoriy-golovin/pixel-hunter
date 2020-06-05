@@ -1,15 +1,14 @@
 
-import game2 from "./game-2.js";
-import RulesView from "./../view/rules-view";
+import Game1View from "./../view/game1-view";
 import {switchAllElementInMain} from "./../utilities.js";
 import greeting from "./greeting.js";
 import {currentState, ResetState, dataGame} from "./../data/game-data.js";
 
 
 export default (data) => {
+  const myGame = new Game1View(dataGame[0]);
 
-
-
+  switchAllElementInMain(myGame.element);
 };
 
 
