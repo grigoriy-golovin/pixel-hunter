@@ -1,13 +1,13 @@
 import IntroView from "./../view/intro-view.js";
-import switchScreens from "./../switch-screens.js";
+import {switchAllElementInMain} from "./../utilities.js";
 import greeting from "./greeting.js";
 
 export default () => {
   const myIntro = new IntroView();
 
   myIntro.onClickStar = () => {
-    switchScreens(greeting);
+    greeting();
   };
 
-  switchScreens(myIntro.element);
+  switchAllElementInMain(myIntro.element);
 };

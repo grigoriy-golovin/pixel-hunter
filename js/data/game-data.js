@@ -13,6 +13,7 @@ export const INIT_STATE = {
 
 export let currentState = Object.assign({}, INIT_STATE);
 
+export const ResetState = () => currentState = Object.assign({}, INIT_STATE);
 
 export const userResponses = [
   {isCorrect: true, timeSec: 15},
