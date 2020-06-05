@@ -1,15 +1,13 @@
-import AbstractView from './abstract-view.js';
+import AbstractView from "./abstract-view.js";
 
 export default class IntroView extends AbstractView {
   constructor() {
     super();
   }
 
-
   bind() {
     this.element.querySelector(`.intro__asterisk`).onclick = (evt) => {
       evt.preventDefault();
-      console.log("eeeee");
       this.onClickStar();
     };
   }
@@ -27,7 +25,6 @@ export default class IntroView extends AbstractView {
       Это не фото. Это рисунок маслом нидерландского художника-фотореалиста
       Tjalf Sparnaay.
     </p>
-  </section>`
+  </section>`;
   }
-
 }
