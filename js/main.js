@@ -1,4 +1,4 @@
-import intro from './screens/intro.js';
-intro();
+import Application from './application.js';
+Application.showIntro();
 
 

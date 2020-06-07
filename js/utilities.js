@@ -5,6 +5,11 @@ export const switchAllElementInMain = (screen) => {
   main.append(screen);
 };
 
+export const changeView = (screen) => {
+  main.innerHTML = ``;
+  main.append(screen);
+};
+
 export const switchLastElementInMain = (screen) => {
   main.lastChild.remove();
   main.append(screen);

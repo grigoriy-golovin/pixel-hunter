@@ -1,10 +1,17 @@
-import getElement from "./../create-element.js";
-import greeting from "./greeting.js";
-import switchScreens from "./../switch-screens.js";
+import AbstractView from "./abstract-view.js";
+
+export default class StatView extends AbstractView {
+  constructor() {
+    super();
+  }
+
+  bind() {}
+
+  onClickBack() {}
 
 
-const stats = getElement(
-    `<header class="header">
+  get template() {
+    return `<header class="header">
     <button class="back">
       <span class="visually-hidden">Вернуться к началу</span>
       <svg class="icon" width="45" height="45" viewBox="0 0 45 45" fill="#000000">
@@ -114,10 +121,6 @@ const stats = getElement(
         <td colspan="5" class="result__total  result__total--final">950</td>
       </tr>
     </table>
-  </section>`
-);
-
-stats.querySelector(`.back`).onclick = () => switchScreens(greeting);
-
-
-export default stats;
+  </section>`;
+  }
+}

@@ -1,10 +1,4 @@
-import game1 from "./../screens/game-1.js";
-import game2 from "./../screens/game-2.js";
-import game3 from "./../screens/game-3.js";
 
-console.log(game1);
-console.log(game2);
-console.log(game3);
 export const INIT_STATE = {
   life: 3,
   level: 1,
@@ -87,3 +81,103 @@ export const life = new Array(3 - currentState.life).fill({
   src: "img/heart__full.svg",
   alt: "Life",
 }));
+
+
+const data = [
+  {
+    "type": "two-of-two",
+    "question": "Угадайте для каждого изображения фото или рисунок?",
+    "answers": [
+      {
+        "image": {
+          "url": "http://placehold.it/468x458",
+          "width": 468,
+          "height": 458
+        },
+        "type": "photo"
+      },
+      {
+        "image": {
+          "url": "http://placehold.it/468x458",
+          "width": 468,
+          "height": 458
+        },
+        "type": "painting"
+      }
+    ]
+  },
+  {
+    "type": "tinder-like",
+    "question": "Угадай, фото или рисунок?",
+    "answers": [
+      {
+        "image": {
+          "url": "http://placehold.it/705x455",
+          "width": 705,
+          "height": 455
+        },
+        "type": "photo"
+      }
+    ]
+  },
+  {
+    "type": "one-of-three",
+    "question": "Найдите рисунок среди изображений",
+    "answers": [
+      {
+        "image": {
+          "url": "http://placehold.it/304x455",
+          "width": 304,
+          "height": 455
+        },
+        "type": "photo"
+      },
+      {
+        "image": {
+          "url": "http://placehold.it/304x455",
+          "width": 304,
+          "height": 455
+        },
+        "type": "painting"
+      },
+      {
+        "image": {
+          "url": "http://placehold.it/304x455",
+          "width": 304,
+          "height": 455
+        },
+        "type": "photo"
+      }
+    ]
+  },
+  {
+    "type": "one-of-three",
+    "question": "Найдите фото среди изображений",
+    "answers": [
+      {
+        "image": {
+          "url": "http://placehold.it/304x455",
+          "width": 304,
+          "height": 455
+        },
+        "type": "painting"
+      },
+      {
+        "image": {
+          "url": "http://placehold.it/304x455",
+          "width": 304,
+          "height": 455
+        },
+        "type": "painting"
+      },
+      {
+        "image": {
+          "url": "http://placehold.it/304x455",
+          "width": 304,
+          "height": 455
+        },
+        "type": "photo"
+      }
+    ]
+  }
+]
