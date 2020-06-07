@@ -1,7 +1,7 @@
 
 export const INIT_STATE = {
-  life: 3,
-  level: 0,
+  life: 1,
+  level: 5,
 }
 
 

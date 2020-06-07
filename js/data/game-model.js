@@ -3,7 +3,7 @@ import {dataQuestion, INIT_STATE} from "./game-data.js";
 export default class gameModel {
   constructor(name) {
     this.name = name;
-    this.userResponses = [];
+    this.playerResponses = [];
     this.restart();
   }
 
@@ -42,7 +42,7 @@ export default class gameModel {
   }
 
   get currentStats() {
-  return  this.userResponses.map((item) => {
+  return  this.playerResponses.map((item) => {
 if (!item.isCorrect) {
   return 'wrong';
 };
@@ -53,6 +53,6 @@ if (item.timeSec > 20) {
   return 'slow';
 };
 return 'correct';
-}).concat(new Array(10 - this.userResponses.length).fill('unknown'));
+}).concat(new Array(10 - this.playerResponses.length).fill('unknown'));
   }
 }

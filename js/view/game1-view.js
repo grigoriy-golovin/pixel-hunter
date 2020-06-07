@@ -8,8 +8,19 @@ export default class Game1View extends AbstractView {
   }
 
   bind() {
-
+    const form = this.element.querySelector(`.game__content`);
+    form.onchange = (evt) => {
+      if (form.checkValidity()) {
+        const answers = [
+          form.elements.question1.value,
+          form.elements.question2.value,
+        ];
+        this.onAnswer(answers);
+      }
+    };
   }
+
+  onAnswer(answers) {};
 
   get template() {
     return `<section class="game">

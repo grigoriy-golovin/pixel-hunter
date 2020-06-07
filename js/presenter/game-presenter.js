@@ -16,7 +16,8 @@ export default class GamePresenter {
 
     this.header = new HeaderView(this.model.life);
     this.gameView = new this.gameTypeMap[this.model.typeCurrentLeval](
-      this.model.currentGameData, this.model.currentStats
+      this.model.currentGameData,
+      this.model.currentStats
     );
     this.root = document.createElement(`div`);
     this.root.append(this.header.element);

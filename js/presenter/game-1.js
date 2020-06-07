@@ -13,17 +13,17 @@ export default (data) => {
 };
 
 
-  // const game1 = getElement(gameScreen);
-  // console.log(game1);
-  // const form = game1.querySelector(`.game__content`);
+  const game1 = getElement(gameScreen);
 
-  // form.onchange = (evt) => {
-  //   if (form.checkValidity()) {
-  //     const response = {
-  //       question1: form.elements.question1.value,
-  //       question2: form.elements.question2.value,
-  //     };
-  //     gameRun(response);
-  //     switchGameScreens(game2(dataGame[1]))
-  //   }
-  // };
+  const form = game1.querySelector(`.game__content`);
+
+  form.onchange = (evt) => {
+    if (form.checkValidity()) {
+      const response = {
+        question1: form.elements.question1.value,
+        question2: form.elements.question2.value,
+      };
+      gameRun(response);
+      switchGameScreens(game2(dataGame[1]))
+    }
+  };
