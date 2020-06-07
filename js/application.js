@@ -1,8 +1,9 @@
 import IntroPresenter from "./presenter/intro-presenter.js";
 import WelcomePresenter from "./presenter/greeting-presenter.js";
-import GamePresenter from "./presenter/game-presenter.js"
-import StatsPresenter from "./presenter/stats-presenter.js"
-import {changeView} from "./utilities.js"
+import GamePresenter from "./presenter/game-presenter.js";
+import StatsPresenter from "./presenter/stats-presenter.js";
+import {changeView} from "./utilities.js";
+import gameModel from "./data/game-model.js";
 
 export default class Application {
   static showIntro() {
@@ -16,9 +17,9 @@ export default class Application {
   }
 
   static showGame(userName) {
-    const model = new QuestModel(userName);
+    const model = new gameModel(userName);
     const gamePresenter = new GamePresenter(model);
-    changeView(gameScreen.element);
+    changeView(gamePresenter.element);
     gamePresenter.startGame();
   }
 

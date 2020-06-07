@@ -27,6 +27,6 @@ export default class HeaderView extends AbstractView {
   }
 
   bind() {
-    gameHeader.querySelector(`.back`).onclick = () => onBack();
+    this.element.querySelector(`.back`).onclick = () => onBack();
   }
 }
