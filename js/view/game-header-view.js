@@ -27,6 +27,8 @@ export default class HeaderView extends AbstractView {
   }
 
   bind() {
-    this.element.querySelector(`.back`).onclick = () => onBack();
+    this.element.querySelector(`.back`).onclick = () => this.onBack();
   }
+
+  onBack() {}
 }

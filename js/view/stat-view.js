@@ -5,7 +5,12 @@ export default class StatView extends AbstractView {
     super();
   }
 
-  bind() {}
+  bind() {
+    this.element.querySelector(`.back`).onclick = (evt) => {
+      evt.preventDefault();
+      this.onClickBack();
+    };
+  }
 
   onClickBack() {}
 

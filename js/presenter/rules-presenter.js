@@ -1,6 +1,6 @@
-import {switchAllElementInMain} from "./../utilities.js";
 import Application from "./../application.js";
 import RulesView from "./../view/rules-view.js";
+
 
 export default class RulesPresenter {
   constructor() {

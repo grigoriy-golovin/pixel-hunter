@@ -3,6 +3,7 @@ import Game2View from "./../view/game2-view";
 import Game3View from "./../view/game3-view";
 import HeaderView from "./../view/game-header-view.js";
 import {changeView} from "./../utilities.js";
+import Application from "./../application.js";
 
 export default class GamePresenter {
   constructor(model) {
@@ -14,16 +15,7 @@ export default class GamePresenter {
       "one-of-three": Game3View,
     };
 
-    this.header = new HeaderView(this.model.life);
-    this.gameView = new this.gameTypeMap[this.model.typeCurrentLeval](
-      this.model.currentGameData,
-      this.model.currentStats
-    );
-    this.root = document.createElement(`div`);
-    this.root.append(this.header.element);
-    this.root.append(this.gameView.element);
-
-    this.gameView.onAnswer = (playerAnswer) => this.doNextLevel(playerAnswer);
+    this.createLevel();
   }
 
   get element() {
@@ -32,8 +24,12 @@ export default class GamePresenter {
 
   doNextLevel(playerAnswer) {
     this.model.updatePlayerResponses(this.checkAnswer(playerAnswer));
-    this.model.checkedNextLevel();
-    this.showNextLevel();
+    if (this.model.PlayerResponsesFull) {
+      Application.showStats(this.model.PlayerResponses);
+    } else {
+      this.model.checkedNextLevel();
+      this.showNextLevel();
+    }
   }
 
   checkAnswer(playerAnswer) {
@@ -43,7 +39,7 @@ export default class GamePresenter {
     };
   }
 
-  showNextLevel() {
+  createLevel() {
     this.header = new HeaderView(this.model.life);
     this.gameView = new this.gameTypeMap[this.model.typeCurrentLeval](
       this.model.currentGameData,
@@ -52,7 +48,12 @@ export default class GamePresenter {
     this.root = document.createElement(`div`);
     this.root.append(this.header.element);
     this.root.append(this.gameView.element);
+    this.header.onBack = () => Application.showWelcome();
+    this.gameView.onAnswer = (playerAnswer) => this.doNextLevel(playerAnswer);
+  }
 
+  showNextLevel() {
+    this.createLevel();
     changeView(this.element);
   }
 

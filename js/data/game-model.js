@@ -14,8 +14,8 @@ export default class gameModel {
   get life() {
     return new Array(3 - this._state.life)
       .fill({
-        src: "img/heart__empty.svg",
-        alt: "Missed Life",
+        src: `img/heart__empty.svg`,
+        alt: `Missed Life`,
       })
       .concat(
         new Array(this._state.life).fill({
@@ -56,13 +56,17 @@ export default class gameModel {
 
   get trueAnswer() {
     if (this.currentGameData.type === `one-of-three`) {
-      return this.currentGameData.answers.findindex((item) => item.type === `painting`)
+      return this.currentGameData.answers.findIndex((item) => item.type === `painting`)
     }
     return this.currentGameData.answers.map((item) => item.type).join();
   }
 
+  get PlayerResponsesFull() {
+    return this.playerResponses.length === 10
+  }
+
   restart() {
-    this._state = INIT_STATE;
+    this._state = Object.assign({}, INIT_STATE);
   }
 
   checkedNextLevel() {
