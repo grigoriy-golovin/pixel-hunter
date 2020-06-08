@@ -1,17 +1,29 @@
 import AbstractView from "./abstract-view.js";
 
 export default class Game1View extends AbstractView {
- constructor(data, stats) {
+  constructor(data, stats) {
     super();
     this.data = data;
     this.stats = stats;
   }
 
-  bind() {
+    onAnswer(answer) {}
 
+  bind() {
+    const form = this.element.querySelector(`.game__content`);
+
+    form.onclick = (evt) => {
+      // console.log(form);
+      // const response = evt.path[0].alt;
+      // const response = evt.target.alt;
+      const divAnswer = evt.path[1];
+      const answer = Array.from(form.children).indexOf(divAnswer);
+      this.onAnswer(answer);
+
+    };
   }
 
-  stat() {}
+
 
   get template() {
     return `<section class="game">

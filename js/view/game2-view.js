@@ -13,9 +13,10 @@ export default class Game1View extends AbstractView {
 
   form.onchange = () => {
     if (form.checkValidity()) {
-      const answers = [
+      let answers = [
         form.elements.question1.value,
       ];
+      answers = answers.join();
       this.onAnswer(answers);
     }
   };
@@ -34,7 +35,7 @@ export default class Game1View extends AbstractView {
           <span>Фото</span>
         </label>
         <label class="game__answer  game__answer--paint">
-          <input class="visually-hidden" name="question1" type="radio" value="paint" required>
+          <input class="visually-hidden" name="question1" type="radio" value="painting" required>
           <span>Рисунок</span>
         </label>
       </div>

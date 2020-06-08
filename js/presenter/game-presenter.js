@@ -22,10 +22,38 @@ export default class GamePresenter {
     this.root = document.createElement(`div`);
     this.root.append(this.header.element);
     this.root.append(this.gameView.element);
+
+    this.gameView.onAnswer = (playerAnswer) => this.doNextLevel(playerAnswer);
   }
 
   get element() {
     return this.root;
+  }
+
+  doNextLevel(playerAnswer) {
+    this.model.updatePlayerResponses(this.checkAnswer(playerAnswer));
+    this.model.checkedNextLevel();
+    this.showNextLevel();
+  }
+
+  checkAnswer(playerAnswer) {
+    return {
+      isCorrect: this.model.trueAnswer === playerAnswer,
+      timeSec: 15,
+    };
+  }
+
+  showNextLevel() {
+    this.header = new HeaderView(this.model.life);
+    this.gameView = new this.gameTypeMap[this.model.typeCurrentLeval](
+      this.model.currentGameData,
+      this.model.currentStats
+    );
+    this.root = document.createElement(`div`);
+    this.root.append(this.header.element);
+    this.root.append(this.gameView.element);
+
+    changeView(this.element);
   }
 
   startGame() {}

@@ -25,10 +25,6 @@ export default class gameModel {
       );
   }
 
-  restart() {
-    this._state = INIT_STATE;
-  }
-
   get currentLeval() {
     return this._state.level;
   }
@@ -42,17 +38,38 @@ export default class gameModel {
   }
 
   get currentStats() {
-  return  this.playerResponses.map((item) => {
-if (!item.isCorrect) {
-  return 'wrong';
-};
-if (item.timeSec < 10) {
-  return 'fast';
-};
-if (item.timeSec > 20) {
-  return 'slow';
-};
-return 'correct';
-}).concat(new Array(10 - this.playerResponses.length).fill('unknown'));
+    return this.playerResponses
+      .map((item) => {
+        if (!item.isCorrect) {
+          return "wrong";
+        }
+        if (item.timeSec < 10) {
+          return "fast";
+        }
+        if (item.timeSec > 20) {
+          return "slow";
+        }
+        return "correct";
+      })
+      .concat(new Array(10 - this.playerResponses.length).fill("unknown"));
+  }
+
+  get trueAnswer() {
+    if (this.currentGameData.type === `one-of-three`) {
+      return this.currentGameData.answers.findindex((item) => item.type === `painting`)
+    }
+    return this.currentGameData.answers.map((item) => item.type).join();
+  }
+
+  restart() {
+    this._state = INIT_STATE;
+  }
+
+  checkedNextLevel() {
+    this._state.level++;
+  }
+
+  updatePlayerResponses(response) {
+    this.playerResponses.push(response);
   }
 }
