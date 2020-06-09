@@ -1,9 +1,10 @@
 import AbstractView from "./abstract-view.js";
 
 export default class HeaderView extends AbstractView {
-  constructor(life) {
+  constructor(life, time) {
     super();
     this.life = life;
+    this.time = time;
   }
 
   get template() {
@@ -17,7 +18,7 @@ export default class HeaderView extends AbstractView {
         <use xlink:href="img/sprite.svg#logo-small"></use>
       </svg>
     </button>
-    <div class="game__timer">NN</div>
+    <div class="game__timer">${this.time}</div>
     <div class="game__lives">
       <img src=${this.life[0].src} class="game__heart" alt=${this.life[0].alt} width="31" height="27">
       <img src=${this.life[1].src} class="game__heart" alt=${this.life[1].alt} width="31" height="27">

@@ -14,3 +14,7 @@ export const switchLastElementInMain = (screen) => {
   main.lastChild.remove();
   main.append(screen);
 };
+
+export const changeFierstInMain = (screen) => {
+  main.children[0].firstChild.replaceWith(screen);
+}

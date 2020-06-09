@@ -5,6 +5,8 @@ export default class gameModel {
     this.name = name;
     this.playerResponses = [];
     this.restart();
+    this.TIME_IN_START = 30;
+    this._time = this.TIME_IN_START;
   }
 
   get state() {
@@ -56,13 +58,34 @@ export default class gameModel {
 
   get trueAnswer() {
     if (this.currentGameData.type === `one-of-three`) {
-      return this.currentGameData.answers.findIndex((item) => item.type === `painting`)
+      if (
+        this.currentGameData.answers
+          .map((item) => item.type)
+          .filter((it) => it === `photo`).length === 2
+      ) {
+        return this.currentGameData.answers.findIndex(
+        (item) => item.type === `painting`
+      );
+      } else {
+        return this.currentGameData.answers.findIndex(
+        (item) => item.type === `photo`
+      );
+      }
+
     }
     return this.currentGameData.answers.map((item) => item.type).join();
   }
 
   get PlayerResponsesFull() {
-    return this.playerResponses.length === 10
+    return this.playerResponses.length === 10;
+  }
+
+  get isTimeOver() {
+    return this._time === 0;
+  }
+
+  get time() {
+    return this._time;
   }
 
   restart() {
@@ -76,4 +99,13 @@ export default class gameModel {
   updatePlayerResponses(response) {
     this.playerResponses.push(response);
   }
+
+  restartTimer() {
+    this._time = this.TIME_IN_START
+  }
+
+  tick() {
+    this._time--
+  }
+
 }

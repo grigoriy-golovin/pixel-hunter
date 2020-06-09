@@ -20,7 +20,7 @@ export default class Application {
     const model = new gameModel(userName);
     const gamePresenter = new GamePresenter(model);
     changeView(gamePresenter.element);
-    gamePresenter.startGame();
+    gamePresenter.startTimer();
   }
 
   static showStats(stats) {
