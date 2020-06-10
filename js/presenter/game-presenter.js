@@ -36,8 +36,16 @@ export default class GamePresenter {
   }
 
   checkAnswer(playerAnswer) {
+    const isTrue = this.model.trueAnswer === playerAnswer;
+    if (!isTrue) {
+      this.model.takeLife();
+    }
+    if (this.model.isDied) {
+      this.stopTimer();
+      Application.showStats(this.model.playerResponses);
+    }
     return {
-      isCorrect: this.model.trueAnswer === playerAnswer,
+      isCorrect: isTrue,
       timeSec: 30 - this.model.time,
     };
   }

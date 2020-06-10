@@ -4,9 +4,9 @@ export default class gameModel {
   constructor(name) {
     this.name = name;
     this.playerResponses = [];
-    this.restart();
     this.TIME_IN_START = 30;
     this._time = this.TIME_IN_START;
+    this.restart();
   }
 
   get state() {
@@ -64,14 +64,13 @@ export default class gameModel {
           .filter((it) => it === `photo`).length === 2
       ) {
         return this.currentGameData.answers.findIndex(
-        (item) => item.type === `painting`
-      );
+          (item) => item.type === `painting`
+        );
       } else {
         return this.currentGameData.answers.findIndex(
-        (item) => item.type === `photo`
-      );
+          (item) => item.type === `photo`
+        );
       }
-
     }
     return this.currentGameData.answers.map((item) => item.type).join();
   }
@@ -88,6 +87,10 @@ export default class gameModel {
     return this._time;
   }
 
+  get isDied() {
+    return this._state.life <= 0;
+  }
+
   restart() {
     this._state = Object.assign({}, INIT_STATE);
   }
@@ -101,11 +104,14 @@ export default class gameModel {
   }
 
   restartTimer() {
-    this._time = this.TIME_IN_START
+    this._time = this.TIME_IN_START;
   }
 
   tick() {
-    this._time--
+    this._time--;
   }
 
+  takeLife() {
+    this._state.life--;
+  }
 }
