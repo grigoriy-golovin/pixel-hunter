@@ -108,16 +108,16 @@ export const dataQuestion = [
       {
         "image": {
           "url": "https://i.imgur.com/DKR1HtB.jpg",
-          "width": 468,
-          "height": 458
+          "width": 264,
+          "height": 700
         },
         "type": "photo"
       },
       {
         "image": {
           "url": "https://k32.kn3.net/5C7060EC5.jpg",
-          "width": 468,
-          "height": 458
+          "width": 933,
+          "height": 700
         },
         "type": "painting"
       }
@@ -144,24 +144,24 @@ export const dataQuestion = [
       {
         "image": {
           "url": "https://i.imgur.com/DiHM5Zb.jpg",
-          "width": 304,
-          "height": 455
+          "width": 474,
+          "height": 700
         },
         "type": "photo"
       },
       {
         "image": {
           "url": "https://k42.kn3.net/D2F0370D6.jpg",
-          "width": 304,
-          "height": 455
+          "width": 468,
+          "height": 354
         },
         "type": "painting"
       },
       {
         "image": {
           "url": "https://i.imgur.com/DiHM5Zb.jpg",
-          "width": 304,
-          "height": 455
+          "width": 474,
+          "height": 700
         },
         "type": "photo"
       }
@@ -174,24 +174,24 @@ export const dataQuestion = [
       {
         "image": {
           "url": "https://k32.kn3.net/5C7060EC5.jpg",
-          "width": 304,
-          "height": 455
+          "width": 933,
+          "height": 700
         },
         "type": "painting"
       },
       {
         "image": {
           "url": "https://k42.kn3.net/D2F0370D6.jpg",
-          "width": 304,
-          "height": 455
+          "width": 468,
+          "height": 354
         },
         "type": "painting"
       },
       {
         "image": {
           "url": "https://i.imgur.com/DiHM5Zb.jpg",
-          "width": 304,
-          "height": 455
+          "width": 474,
+          "height": 700
         },
         "type": "photo"
       }
@@ -204,8 +204,8 @@ export const dataQuestion = [
       {
         "image": {
           "url": "https://k32.kn3.net/5C7060EC5.jpg",
-          "width": 468,
-          "height": 458
+          "width": 933,
+          "height": 700
         },
         "type": "photo"
       },
