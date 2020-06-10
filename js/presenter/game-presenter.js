@@ -29,7 +29,7 @@ export default class GamePresenter {
       this.stopTimer();
       Application.showStats(this.model.PlayerResponses);
     } else {
-      this.stopTimer()
+      this.stopTimer();
       this.model.checkedNextLevel();
       this.showNextLevel();
     }
@@ -59,7 +59,10 @@ export default class GamePresenter {
     this.root = document.createElement(`div`);
     this.root.append(this.header.element);
     this.root.append(this.gameView.element);
-    this.header.onBack = () => Application.showWelcome();
+    this.header.onBack = () => {
+      this.stopTimer();
+      Application.showWelcome();
+    };
     this.gameView.onAnswer = (playerAnswer) => this.doNextLevel(playerAnswer);
   }
 
@@ -77,7 +80,10 @@ export default class GamePresenter {
   updateHeader() {
     this.header = new HeaderView(this.model.life, this.model.time);
     changeFierstInMain(this.header.element);
-    this.header.onBack = () => Application.showWelcome();
+    this.header.onBack = () => {
+      this.stopTimer();
+      Application.showWelcome();
+    };
   }
 
   runTimer() {

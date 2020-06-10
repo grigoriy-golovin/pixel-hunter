@@ -1,10 +1,18 @@
 import AbstractView from "./abstract-view.js";
+import {resize} from "./../utilities.js";
 
 export default class Game1View extends AbstractView {
   constructor(data, stats) {
     super();
     this.data = data;
     this.stats = stats;
+    this.frame = {
+      width: 468,
+      height: 458,
+    };
+
+    this.givenArr = this.getGivenArr(this.data);
+    this.resizeArr = this.givenArr.map((item) => resize(this.frame, item));
   }
 
   bind() {
@@ -21,14 +29,23 @@ export default class Game1View extends AbstractView {
     };
   }
 
-  onAnswer(answers) {};
+  onAnswer(answers) {}
+
+  getGivenArr(data) {
+    return data.answers.map((item) => {
+      return {
+        width: item.image.width,
+        height: item.image.height,
+      };
+    });
+  }
 
   get template() {
     return `<section class="game">
     <p class="game__task">${this.data.question}</p>
     <form class="game__content">
       <div class="game__option">
-        <img src=${this.data.answers[0].image.url} alt="Option 1" width="468" height="458">
+        <img src=${this.data.answers[0].image.url} alt="Option 1" width="${this.resizeArr[0].width}" height="${this.resizeArr[0].height}">
         <label class="game__answer game__answer--photo">
           <input class="visually-hidden" name="question1" type="radio" value="photo" required>
           <span>Фото</span>
@@ -39,7 +56,7 @@ export default class Game1View extends AbstractView {
         </label>
       </div>
       <div class="game__option">
-        <img src=${this.data.answers[1].image.url} alt="Option 2" width="468" height="458">
+        <img src=${this.data.answers[1].image.url} alt="Option 2" width="${this.resizeArr[1].width}" height="${this.resizeArr[1].height}">
         <label class="game__answer  game__answer--photo">
           <input class="visually-hidden" name="question2" type="radio" value="photo" required>
           <span>Фото</span>
