@@ -1,19 +1,12 @@
 import AbstractView from "./abstract-view.js";
 
 export default class StatView extends AbstractView {
-  constructor() {
+  constructor(stats, scoringData) {
     super();
+    this.stats = stats;
+    this.scoringData = scoringData;
+    this.message = this.scoringData.isVictiry ? `Победа !` : `Вы проиграли )=`;
   }
-
-  bind() {
-    this.element.querySelector(`.back`).onclick = (evt) => {
-      evt.preventDefault();
-      this.onClickBack();
-    };
-  }
-
-  onClickBack() {}
-
 
   get template() {
     return `<header class="header">
@@ -28,26 +21,26 @@ export default class StatView extends AbstractView {
     </button>
   </header>
   <section class="result">
-    <h2 class="result__title">Победа!</h2>
+    <h2 class="result__title">${this.message}</h2>
     <table class="result__table">
       <tr>
         <td class="result__number">1.</td>
         <td colspan="2">
           <ul class="stats">
-            <li class="stats__result stats__result--wrong"></li>
-            <li class="stats__result stats__result--slow"></li>
-            <li class="stats__result stats__result--fast"></li>
-            <li class="stats__result stats__result--correct"></li>
-            <li class="stats__result stats__result--wrong"></li>
-            <li class="stats__result stats__result--unknown"></li>
-            <li class="stats__result stats__result--slow"></li>
-            <li class="stats__result stats__result--unknown"></li>
-            <li class="stats__result stats__result--fast"></li>
-            <li class="stats__result stats__result--unknown"></li>
+            <li class="stats__result stats__result--${this.stats[0]}"></li>
+            <li class="stats__result stats__result--${this.stats[1]}"></li>
+            <li class="stats__result stats__result--${this.stats[2]}"></li>
+            <li class="stats__result stats__result--${this.stats[3]}"></li>
+            <li class="stats__result stats__result--${this.stats[4]}"></li>
+            <li class="stats__result stats__result--${this.stats[5]}"></li>
+            <li class="stats__result stats__result--${this.stats[6]}"></li>
+            <li class="stats__result stats__result--${this.stats[7]}"></li>
+            <li class="stats__result stats__result--${this.stats[8]}"></li>
+            <li class="stats__result stats__result--${this.stats[9]}"></li>
           </ul>
         </td>
         <td class="result__points">× 100</td>
-        <td class="result__total">900</td>
+        <td class="result__total">${this.scoringData.totalResult}</td>
       </tr>
       <tr>
         <td></td>
@@ -128,4 +121,14 @@ export default class StatView extends AbstractView {
     </table>
   </section>`;
   }
+
+  bind() {
+    this.element.querySelector(`.back`).onclick = (evt) => {
+      evt.preventDefault();
+      this.onClickBack();
+    };
+  }
+
+  onClickBack() {}
+
 }

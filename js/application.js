@@ -23,8 +23,8 @@ export default class Application {
     gamePresenter.startTimer();
   }
 
-  static showStats(stats) {
-    const statistics = new StatsPresenter(stats);
+  static showStats(model) {
+    const statistics = new StatsPresenter(model);
     changeView(statistics.element);
   }
 }

@@ -1,4 +1,15 @@
-const scoring = (answers, lives) => {
+export default class scoring  = (answers, lives) => {
+
+  class lussResult  = {
+    isVictiry: false,
+    fullResult: -1,
+    speedBonus: null,
+    lifeBonus: null,
+    slowPenalty: null,
+
+
+  }
+
   if (answers.length !== 10) {
     return -1;
   }
