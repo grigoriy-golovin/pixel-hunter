@@ -1,47 +1,110 @@
-export default class scoring  = (answers, lives) => {
+import {INIT_STATE} from "./../data/game-data.js";
+export default class scoring {
+  constructor(answers) {
+    this.answers = answers;
+    this.LIFE_IN_START = INIT_STATE.life;
+    this.LEVELS_NUMBER = 10;
+  }
 
-  class lussResult  = {
-    isVictiry: false,
-    fullResult: -1,
-    speedBonus: null,
-    lifeBonus: null,
-    slowPenalty: null,
+  get isVictiry() {
+    return !(
+      this.answers.length !== this.LEVELS_NUMBER ||
+      this.LEVELS_NUMBER - this.correctNumber > this.LIFE_IN_START ||
+      this.answers === undefined
+    )
+  }
 
+  get correctAnswers() {
+
+    return this.answers.filter((item) => item.isCorrect);
 
   }
 
-  if (answers.length !== 10) {
-    return -1;
-  }
-  const correctNumber = answers.reduce((number, item) => {
-    if (item.isCorrect) {
-      number++;
-    }
-    return number;
-  }, 0);
-
-  if (correctNumber < 7) {
-    return -1;
+  get correctNumber() {
+    return this.correctAnswers.length;
   }
 
-  const balls = answers.reduce((sum, item) => {
-    if (!item.isCorrect) {
-      return sum;
-    }
-    if (item.timeSec < 10) {
-      return sum + 150;
-    }
-    if (item.timeSec > 20) {
-      return sum + 50;
-    }
-    return sum + 100;
-  }, 0);
+  get baseResult() {
+    return this.correctNumber*100;
+  }
 
-  const livesInEnd = lives - (10 - correctNumber);
+  get speedNumber() {
+    return this.correctAnswers.reduce((sum, item) => {
+      if (item.timeSec < 10) {
+        console.log(sum);
+        return sum + 1;
+      }
+        return sum;
+    }, 0);
+  }
 
-  const ballsFull = balls + livesInEnd * 50;
+  get speedBonus() {
+    return this.speedNumber*50;
+  }
 
-  return ballsFull;
-};
+  get slowNumber() {
+    return this.correctAnswers.reduce((sum, item) => {
+      if (item.timeSec > 20) {
+        return sum - 1;
+      }
+        return sum;
+    }, 0);
+  }
 
-export default scoring;
+  get slowPenalty() {
+    return this.slowNumber*50;
+  }
+
+  get lifeInEnd() {
+    return this.LIFE_IN_START - (this.LEVELS_NUMBER - this.correctNumber);
+  }
+
+  get lifeBonus() {
+    return this.lifeInEnd*50;
+  }
+
+  get fullResult() {
+    if (!this.isVictiry) return -1;
+    return this.baseResult + this.speedBonus + this.slowPenalty + this.lifeBonus;
+  }
+
+  get currentStats() {
+    return this.answers
+      .map((item) => {
+        if (!item.isCorrect) {
+          return "wrong";
+        }
+        if (item.timeSec < 10) {
+          return "fast";
+        }
+        if (item.timeSec > 20) {
+          return "slow";
+        }
+        return "correct";
+      })
+      .concat(new Array(10 - this.answers.length).fill("unknown"));
+  }
+}
+
+
+  // const balls = answers.reduce((sum, item) => {
+  //   if (!item.isCorrect) {
+  //     return sum;
+  //   }
+  //   if (item.timeSec < 10) {
+  //     return sum + 150;
+  //   }
+  //   if (item.timeSec > 20) {
+  //     return sum + 50;
+  //   }
+  //   return sum + 100;
+  // }, 0);
+
+  // const livesInEnd = lives - (10 - correctNumber);
+
+  // const ballsFull = balls + livesInEnd * 50;
+
+  // return ballsFull;
+
+
+
