@@ -25,10 +25,12 @@ export default class scoring {
   }
 
   get baseResult() {
+    if (!this.isVictiry) return 0;
     return this.correctNumber*100;
   }
 
   get speedNumber() {
+    if (!this.isVictiry) return 0;
     return this.correctAnswers.reduce((sum, item) => {
       if (item.timeSec < 10) {
         console.log(sum);
@@ -43,6 +45,7 @@ export default class scoring {
   }
 
   get slowNumber() {
+    if (!this.isVictiry) return 0;
     return this.correctAnswers.reduce((sum, item) => {
       if (item.timeSec > 20) {
         return sum - 1;
@@ -56,6 +59,7 @@ export default class scoring {
   }
 
   get lifeInEnd() {
+  if (!this.isVictiry) return 0;
     return this.LIFE_IN_START - (this.LEVELS_NUMBER - this.correctNumber);
   }
 
@@ -64,7 +68,7 @@ export default class scoring {
   }
 
   get fullResult() {
-    if (!this.isVictiry) return -1;
+    if (!this.isVictiry) return `fail`;
     return this.baseResult + this.speedBonus + this.slowPenalty + this.lifeBonus;
   }
 
