@@ -4,7 +4,9 @@ export const INIT_STATE = {
   level: 0,
 }
 
-export const dataQuestion = [
+export const setDataQuestion = (data) => dataQuestion = data;
+
+export let dataQuestion = [
   {
     "type": "two-of-two",
     "question": "Угадайте для каждого изображения фото или рисунок?",
