@@ -27,7 +27,7 @@ export default class GamePresenter {
     this.model.updatePlayerResponses(this.checkAnswer(playerAnswer));
     if (this.model.PlayerResponsesFull) {
       this.stopTimer();
-      Application.showStats(this.model);
+      Application.post(this.model);
     } else {
       this.stopTimer();
       this.model.checkedNextLevel();
@@ -42,7 +42,7 @@ export default class GamePresenter {
     }
     if (this.model.isDied) {
       this.stopTimer();
-      Application.showStats(this.model);
+      Application.post(this.model);
     }
     return {
       isCorrect: isTrue,

@@ -33,7 +33,6 @@ export default class scoring {
     if (!this.isVictiry) return 0;
     return this.correctAnswers.reduce((sum, item) => {
       if (item.timeSec < 10) {
-        console.log(sum);
         return sum + 1;
       }
         return sum;

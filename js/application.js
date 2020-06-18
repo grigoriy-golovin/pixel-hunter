@@ -27,4 +27,33 @@ export default class Application {
     const statistics = new StatsPresenter(model);
     changeView(statistics.element);
   }
+
+  static post(model) {
+    window
+      .fetch(
+        `https://intensive-ecmascript-server-btfgudlkpi.now.sh/pixel-hunter/stats/:57943689-:${model.name}`,
+        {
+          method: `POST`,
+          headers: {
+            "Content-Type": "application/json;charset=utf-8",
+          },
+          body: JSON.stringify(model.playerResponses),
+        }
+      )
+      .then(Application.loader(model));
+  }
+
+  static loader(model) {
+    window
+      .fetch(
+        `https://intensive-ecmascript-server-btfgudlkpi.now.sh/pixel-hunter/stats/:57943689-:${model.name}`
+      )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        data = data.reverse();
+        console.log(data);
+        Application.showStats(data);
+      });
+  }
 }
