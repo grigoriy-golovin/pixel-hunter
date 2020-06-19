@@ -40,7 +40,8 @@ export default class Application {
           body: JSON.stringify(model.playerResponses),
         }
       )
-      .then(Application.loader(model));
+      .then(Application.loader(model))
+      .catch((error) => console.error(error));
   }
 
   static loader(model) {
@@ -48,12 +49,18 @@ export default class Application {
       .fetch(
         `https://intensive-ecmascript-server-btfgudlkpi.now.sh/pixel-hunter/stats/:57943689-:${model.name}`
       )
+      .then((response) => {
+        if (response.ok) {
+          return response;
+        } else {
+          return new Error(response.statysText);
+        }
+      })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         data = data.reverse();
-        console.log(data);
         Application.showStats(data);
-      });
+      })
+      .catch((error) => console.error(error));
   }
 }

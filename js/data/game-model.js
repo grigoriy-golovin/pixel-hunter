@@ -14,6 +14,12 @@ export default class gameModel {
   }
 
   get life() {
+    if (this._state.life === 0) {
+      return new Array(3).fill({
+        src: `img/heart__empty.svg`,
+        alt: `Missed Life`,
+      });
+    }
     return new Array(3 - this._state.life)
       .fill({
         src: `img/heart__empty.svg`,

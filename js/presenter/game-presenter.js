@@ -23,13 +23,13 @@ export default class GamePresenter {
     this.startTimer();
   }
 
+
   doNextLevel(playerAnswer) {
+    this.stopTimer();
     this.model.updatePlayerResponses(this.checkAnswer(playerAnswer));
-    if (this.model.PlayerResponsesFull) {
-      this.stopTimer();
+    if (this.model.PlayerResponsesFull || this.model.isDied) {
       Application.post(this.model);
     } else {
-      this.stopTimer();
       this.model.checkedNextLevel();
       this.showNextLevel();
     }
@@ -39,10 +39,6 @@ export default class GamePresenter {
     const isTrue = this.model.trueAnswer === playerAnswer;
     if (!isTrue) {
       this.model.takeLife();
-    }
-    if (this.model.isDied) {
-      this.stopTimer();
-      Application.post(this.model);
     }
     return {
       isCorrect: isTrue,
