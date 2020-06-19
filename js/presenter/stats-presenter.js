@@ -22,7 +22,7 @@ export default class StatsPresenter {
   addOldStat() {
     for (let i = 1; i < this.serverData.length; i++) {
       const scoring = new Scoring(this.serverData[i]);
-      this.oldStst = new OldStatView(scoring);
+      this.oldStst = new OldStatView(scoring, i+1);
       this.container.append(this.oldStst.element)
     }
   }
