@@ -61,7 +61,7 @@ export default class Application {
           body: JSON.stringify(model.playerResponses),
         }
       )
-      .then(Application.loader(model))
+      .then(() => Application.loader(model))
       .catch((error) => console.error(error));
   }
 
@@ -78,7 +78,7 @@ export default class Application {
         }
       })
       .then((response) => response.json())
-      .then((data) => data = data.reverse())
+      .then((data) => data.reverse())
       .then((data) => Application.showStats(data))
       .catch((error) => console.error(error));
   }
