@@ -4,11 +4,32 @@ import GamePresenter from "./presenter/game-presenter.js";
 import StatsPresenter from "./presenter/stats-presenter.js";
 import {changeView} from "./utilities.js";
 import gameModel from "./data/game-model.js";
+import {setDataQuestion} from "./data/game-data.js";
+
 
 export default class Application {
   static showIntro() {
     const intro = new IntroPresenter();
     changeView(intro.element);
+  }
+
+  static start() {
+    window
+        .fetch(
+          `https://intensive-ecmascript-server-btfgudlkpi.now.sh/pixel-hunter/questions`
+        )
+        .then((response) => {
+          if (response.ok) {
+            return response;
+          } else {
+            throw new Error(response.statysText);
+          }
+        })
+        .then((response) => response.json())
+        .then((data) => setDataQuestion(data))
+        .then((data) => console.log(data))
+        .then(() => Application.showWelcome())
+        .catch((error) => console.error(error));
   }
 
   static showWelcome() {
@@ -53,14 +74,12 @@ export default class Application {
         if (response.ok) {
           return response;
         } else {
-          return new Error(response.statysText);
+          throw new Error(response.statysText);
         }
       })
       .then((response) => response.json())
-      .then((data) => {
-        data = data.reverse();
-        Application.showStats(data);
-      })
+      .then((data) => data = data.reverse())
+      .then((data) => Application.showStats(data))
       .catch((error) => console.error(error));
   }
 }
